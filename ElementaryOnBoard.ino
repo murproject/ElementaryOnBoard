@@ -17,18 +17,18 @@ BrushlessMotor motorVert2(MOTOR_VERT_TH_2_PIN);
 BrushMotor motorBrush(MOTOR_L_PIN, MOTOR_R_PIN);
 
 unsigned char Crc8(uint8_t *pcBlock, unsigned int len) {
-    unsigned char crc = 0xFF;
-    unsigned int i;
+	unsigned char crc = 0xFF;
+	unsigned int i;
 
-    while (len--)
-    {
-        crc ^= *pcBlock++;
+	while (len--)
+	{
+		crc ^= *pcBlock++;
 
-        for (i = 0; i < 8; i++)
-            crc = crc & 0x80 ? (crc << 1) ^ 0x31 : crc << 1;
-    }
+		for (i = 0; i < 8; i++)
+			crc = crc & 0x80 ? (crc << 1) ^ 0x31 : crc << 1;
+	}
 
-    return crc;
+	return crc;
 }
 
 void setup() {
@@ -61,10 +61,10 @@ void loop() {
 			buffer[8] == END_BYTE) {
 
 			int8_t left_th, vert_th_1, right_th, vert_th_2, add;
-			left_th 	= (int8_t)buffer[2];
-			vert_th_1 	= (int8_t)buffer[3];
-			right_th 	= (int8_t)buffer[4];
-			vert_th_2 	= (int8_t)buffer[5];
+			left_th		= (int8_t)buffer[2];
+			vert_th_1	= (int8_t)buffer[3];
+			right_th	= (int8_t)buffer[4];
+			vert_th_2	= (int8_t)buffer[5];
 			add 		= (int8_t)buffer[6];
 
 			motorLeft.set_power(left_th);
@@ -73,7 +73,7 @@ void loop() {
 			motorVert2.set_power(vert_th_2);
 			motorBrush.set_power(add);
 		}
-        else {
+		else {
 			delay(10);
 		}
 	}
